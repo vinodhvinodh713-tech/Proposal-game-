@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Before the Question 🌹</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff0f5;
+      padding: 20px;
+      text-align: center;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      padding: 10px;
+      margin: 8px 0;
+      background: #ffe4ec;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    input {
+      margin-right: 8px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 14px 24px;
+      font-size: 16px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+    #proposal {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box" id="game">
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <button onclick="nextQuestion()">Next 🌹</button>
+</div>
+
+<div class="box" id="proposal">
+  <h2>🌹 Just One Last Thing 🌹</h2>
+  <p>
+    You stayed till the end<br><br>
+
+    I didn’t make this for answers<br>
+    I made this because you matter to me<br><br>
+
+    I like you<br>
+    a little more than I planned<br>
+    and a lot more than I admit<br><br>
+
+    So before you go<br><br>
+
+    <b>Will you be mine 🌹🤍</b>
+  </p>
+</div>
+
+<script>
+const questions = [
+  ["We started as", ["Strangers","Friends","Best friends","Something that slowly became special"]],
+  ["From friends to this felt", ["Sudden","Forced","Natural","Meant to happen"]],
+  ["When I call you Papa you feel", ["Normal","Smile","Shy","Soft inside"]],
+  ["What am I to you now", ["Same friend","Someone close","Someone special","Someone who matters a lot"]],
+  ["When I care too much you feel", ["Annoyed","Confused","Protected","Loved"]],
+  ["When we talk for long hours you feel", ["Tired","Calm","Happy","Don’t want to stop"]],
+  ["Even after fights we always", ["Stay silent","Miss each other","Think a lot","Come back"]],
+  ["When I say I choose you you feel", ["Pressure","Responsibility","Wanted","Safe"]],
+  ["Me setting boundaries feels like", ["Control","Concern","Care","Fear of losing you"]],
+  ["When I get hurt it’s because", ["I overthink","I care deeply","I’m sensitive","You matter to me"]],
+  ["When I stay it is because", ["Habit","Fear","Love","Choice"]],
+  ["When I step back you feel", ["Relief","Silence","Missing","Something feels off"]],
+  ["What makes our bond strong", ["Love","Friendship","Understanding","Choosing each other"]],
+  ["When you think about us you feel", ["Confused","Calm","Emotional","Hopeful"]],
+  ["Me in your life feels like", ["Extra","Normal","Important","Hard to replace"]],
+  ["When I protect you you feel", ["Annoyed","Controlled","Safe","Cared for"]],
+  ["Our story so far is", ["Messy","Emotional","Real","Beautiful in its own way"]],
+  ["If I wasn’t here you would", ["Be okay","Feel strange","Miss me","Pretend you don’t"]],
+  ["What do I want most", ["To stay","To be chosen","To be understood","All of the above"]],
+  ["The one thing I never wanted to be in your life", ["A burden","A question","A choice you’re unsure of","Someone replaceable"]]
+];
+
+let current = 0;
+
+function loadQuestion() {
+  document.getElementById("question").innerText =
+    (current + 1) + ". " + questions[current][0];
+
+  const opts = document.getElementById("options");
+  opts.innerHTML = "";
+
+  questions[current][1].forEach(opt => {
+    opts.innerHTML += `
+      <label>
+        <input type="radio" name="answer"> ${opt}
+      </label>
+    `;
+  });
+}
+
+function nextQuestion() {
+  const checked = document.querySelector('input[name="answer"]:checked');
+  if (!checked) return;
+
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("proposal").style.display = "block";
+  }
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
